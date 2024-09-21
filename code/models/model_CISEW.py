@@ -79,9 +79,9 @@ class Decoder(nn.Module):
         return out
 
 
-class TrEncoderStg1(nn.Module):
+class SAFEB1(nn.Module):
     def __init__(self, num_channel, num_feature):
-        super(TrEncoderStg1, self).__init__()
+        super(SAFEB1, self).__init__()
         ####################
 
         self.T_l1 = Transformer_l(dim=num_feature, window_size=800)
@@ -116,9 +116,9 @@ class TrEncoderStg1(nn.Module):
         return Highpass1, lin
 
 
-class TrEncoderStg2(nn.Module):
+class SAFEB2(nn.Module):
     def __init__(self, num_feature):
-        super(TrEncoderStg2, self).__init__()
+        super(SAFEB2, self).__init__()
         ####################
 
         # self.T_l1 = Transformer_l(dim=num_feature, window_size=500)
@@ -177,13 +177,13 @@ class MainNet(nn.Module):
         super(MainNet, self).__init__()
         num_channel = 8
         ################ decoder ################
-        self.tr_enc_stg1 = TrEncoderStg1(num_channel,
-                                         24)  ###__init__(self, num_channel, num_feature), out_channel = 2* num_feature
-        self.tr_enc_stg2 = TrEncoderStg2(24)
+        self.tr_enc_stg1 = SAFEB1(num_channel,
+                                  24)  ###__init__(self, num_channel, num_feature), out_channel = 2* num_feature
+        self.tr_enc_stg2 = SAFEB2(24)
 
-        self.tr_enc_stg1_d = TrEncoderStg1(num_channel,
-                                           24)  ###__init__(self, num_channel, num_feature), out_channel = 2* num_feature
-        self.tr_enc_stg2_d = TrEncoderStg2(24)
+        self.tr_enc_stg1_d = SAFEB1(num_channel,
+                                    24)  ###__init__(self, num_channel, num_feature), out_channel = 2* num_feature
+        self.tr_enc_stg2_d = SAFEB2(24)
 
         self.decoder = Decoder(48, 24)  ##__init__(self, in_channels, out_channels)
         self.conv_out = nn.Conv2d(24, num_channel, kernel_size=3, padding=1)
