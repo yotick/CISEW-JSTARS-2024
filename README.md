@@ -1,5 +1,7 @@
 # CISEW-JSTARS-2024
  
+The project operates under the framework of PyTorch.
+
 For training, please run the train.py file. For testing, use the test_RS.py file for reduced-scale images and the test_lu_full.py file for full-scale images. If the images are too large, you can use the test_lu_full_crop.py file instead.
 
 We would be pleased if you can cite this paper, and please refer to:
@@ -17,3 +19,4 @@ We would be pleased if you can cite this paper, and please refer to:
     doi={10.1109/JSTARS.2024.3413856},
     ISSN={2151-1535},
     month={},}
+
