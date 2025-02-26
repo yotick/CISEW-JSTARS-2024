@@ -1,4 +1,5 @@
 # CISEW-JSTARS-2024
+ Cross-Scale Interaction With Spatial-Spectral Enhanced Window Attention for Pansharpening
  
 The project operates under the framework of PyTorch.
 
