@@ -1,5 +1,10 @@
 # CISEW-JSTARS-2024
+<<<<<<< HEAD
  Cross-Scale Interaction With Spatial-Spectral Enhanced Window Attention for Pansharpening
+=======
+
+Paper Link:  https://ieeexplore.ieee.org/document/10556730
+>>>>>>> 8b6ec07867501f9795785d0502213d99de0fc46f
  
 The project operates under the framework of PyTorch.
 
