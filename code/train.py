@@ -22,7 +22,7 @@ from loss import GeneratorLoss
 ########### change here ################
 # from models.model_8_mod_stage1_2 import UNet_level3
 # from models.model_8_mod_Unet import Unet
-from models.model_CISEW import MainNet
+from models.model_CISEW import CISEW
 # from models.model_4_mod_stage1 import Generator
 from test_lu_full_crop import overlap_crop_forward
 from img_index import ref_evaluate
@@ -42,7 +42,7 @@ from helpers import make_patches
 # sate = 'ik'
 sate = 'wv3_8'
 num_chanel = 8
-dataset_dir = 'E:\\remote sense image fusion\\Source Images\\'  ### need to change here   #####
+dataset_dir = 'E:\\00 remote sense image fusion\\Source Images\\'  ### need to change here   #####
 
 # patch_size = 32
 val_step = 5
@@ -89,7 +89,7 @@ cudnn.deterministic = True
 
 device = torch.device('cuda:0')
 # model = Generator(UPSCALE_FACTOR).to(device)
-model = MainNet().to(device)
+model = CISEW().to(device)
 # model = MainNet().to(device)
 # model.load_state_dict(torch.load('/Data/Machine Learning/Zi-Rong Jin/pan/o/DKNET_500.pth'))
 # generator_criterion = GeneratorLoss(batchSize=BATCH_SIZE).to(device)

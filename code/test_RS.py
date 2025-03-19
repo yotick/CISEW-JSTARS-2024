@@ -9,7 +9,7 @@ from data_set_py.data_utils_RS_2 import TestDatasetFromFolder
 # from data import get_test_set
 # from model_8_1 import Generator  ################ need to change ######################
 # from models.model_4_swin_good import Generator  ################ need to change ######################
-from models.model_CISEW import MainNet
+from models.model_CISEW import CISEW
 # sys.path.append('E:\\remote sense image fusion\\shared_py')
 from save_image_func import save_image_RS
 import time
@@ -83,7 +83,7 @@ if __name__ == "__main__":
     parser.add_argument('--cuda', default=False, help='use cuda?')
     opt = parser.parse_args()
 
-    model = MainNet().cuda().eval()   ########## need to change
+    model = CISEW().cuda().eval()   ########## need to change
 
     # opt.satellite = 'wv3_8'
     opt.satellite = 'pl'

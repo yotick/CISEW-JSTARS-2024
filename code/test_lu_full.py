@@ -8,7 +8,7 @@ from torch.utils.data import DataLoader
 from data_set_py.data_utils_Full import TestDatasetFromFolder_Full
 # from data import get_test_set
 # from model_8_1 import Generator  ################ need to change ######################
-from models.model_CISEW import MainNet  ################ need to change ######################
+from models.model_CISEW import CISEW  ################ need to change ######################
 # from models.model_8_swin_light import Generator
 # sys.path.append('E:\\remote sense image fusion\\shared_py')
 from save_image_func import save_image_full
@@ -83,7 +83,7 @@ if __name__ == "__main__":
     parser.add_argument('--cuda', default=False, help='use cuda?')
     opt = parser.parse_args()
 
-    model = MainNet().cuda().eval()   ########## need to change
+    model = CISEW().cuda().eval()   ########## need to change
 
     opt.satellite = 'pl'
     # opt.satellite = 'wv3_8'

@@ -171,10 +171,10 @@ class ChannelAttention(nn.Module):
 
 # --------------------------Main------------------------------- #
 
-class MainNet(nn.Module):
+class CISEW(nn.Module):
 
     def __init__(self):
-        super(MainNet, self).__init__()
+        super(CISEW, self).__init__()
         num_channel = 8
         ################ decoder ################
         self.tr_enc_stg1 = SAFEB1(num_channel,
@@ -443,7 +443,7 @@ class LinformerAttention(nn.Module):
         return out.view(b, n, -1)
 
 
-class LinformerAttention_wind1(nn.Module):  ## earliest and good
+class SEWformer(nn.Module):  ## earliest and good
     def __init__(self, dim=48, heads=3, dim_head=16, dropout=0., k=None, window_size=800):
         super().__init__()
         inner_dim = dim_head * heads
@@ -511,11 +511,11 @@ class LinformerAttention_wind1(nn.Module):  ## earliest and good
             # e = e.matmul(e.transpose(1, 2))
             # f = self.F
             # f = f.matmul(f.transpose(1, 2))
-            e = self.lin1(self.E)
-            f = self.lin2(self.F)
+            MK = self.lin1(self.E)
+            MV = self.lin2(self.F)
             # f = torch.matmul(self.F, self.F.transpose(-2, -1))
-            k = torch.einsum('b h n d, h d d  -> b h n d', k, e)
-            v = torch.einsum('b h n d, h d d  -> b h n d', v, f)
+            k = torch.einsum('b h n d, h d d  -> b h n d', k, MK)
+            v = torch.einsum('b h n d, h d d  -> b h n d', v, MV)
 
             # compute attention scores
             dots = torch.einsum('b h i d, b h j d -> b h i j', q, k) * self.scale
@@ -714,8 +714,8 @@ class Transformer_l(nn.Module):  ### heads maybe 3, dim_head may be 16
                 # Residual(PreNorm(dim, BlockAttention(dim, dim, 128, 1024))),
                 # Residual(PreNorm(dim, Attention_wind3(dim, heads=heads, dim_head=dim_head, dropout=dropout))),
                 Residual(
-                    PreNorm(dim, LinformerAttention_wind1(dim, heads=heads, dim_head=dim_head, window_size=window_size,
-                                                          dropout=dropout))),
+                    PreNorm(dim, SEWformer(dim, heads=heads, dim_head=dim_head, window_size=window_size,
+                                           dropout=dropout))),
                 Residual(PreNorm(dim, FeedForward(dim, mlp_dim, dropout=dropout)))]))
 
     def forward(self, x, mask=None):

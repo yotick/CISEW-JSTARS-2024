@@ -7,7 +7,7 @@ from torch.autograd import Variable
 from torch.utils.data import DataLoader
 from data_set_py.data_utils_Full import TestDatasetFromFolder_Full
 # from data import get_test_set
-from models.model_CISEW import MainNet  ################ need to change ######################
+from models.model_CISEW import CISEW  ################ need to change ######################
 # sys.path.append('E:\\remote sense image fusion\\shared_py')
 # from data_set_py.save_image_func import save_image_full
 import time
@@ -167,7 +167,7 @@ if __name__ == "__main__":
     parser.add_argument('--cuda', default=False, help='use cuda?')
     opt = parser.parse_args()
 
-    model = MainNet().cuda().eval()  ########## need to change
+    model = CISEW().cuda().eval()  ########## need to change
 
     # opt.satellite = 'ik'
     opt.satellite = 'wv3_8'
